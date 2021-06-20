@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.form-control, .form-select {
+	background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.card, .modal-dialog, .modal-content {
+	background-color: rgba(255, 255, 255, 0.05);
+}
+
+.modal {
+	background-color: #121326;
+}
+
+.form-control:focus {
+	background-color: #121326;
+}
+
