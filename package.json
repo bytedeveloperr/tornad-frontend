@@ -7,8 +7,6 @@
     "preview": "svelte-kit preview"
   },
   "devDependencies": {
-    "@sveltejs/adapter-netlify": "^1.0.0-next.17",
-    "@sveltejs/adapter-static": "^1.0.0-next.13",
     "@sveltejs/kit": "next",
     "svelte": "^3.34.0"
   },
@@ -18,7 +16,6 @@
     "@lukeed/uuid": "^2.0.0",
     "@zerodevx/svelte-toast": "^0.3.0",
     "axios": "^0.21.1",
-    "clipboard": "^2.0.8",
     "cookie": "^0.4.1",
     "qrcode": "^1.4.4"
   }
