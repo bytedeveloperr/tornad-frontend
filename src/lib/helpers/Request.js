@@ -9,7 +9,7 @@ token.subscribe((token) => {
 export class Request {
   constructor() {
     const request = axios.create({
-      baseURL: "http://localhost:5000/",
+      baseURL: "https://tornad.herokuapp.com/",
       headers: {
         "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${authToken}`,
