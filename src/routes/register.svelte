@@ -2,7 +2,7 @@
     import { AuthAction } from "$lib/actions/AuthAction";
     import { Toast } from "$lib/helpers/Toast";
     import { BrowserStorage } from "$lib/helpers/BrowserStorage"
-    import { Auth } from "$lib/store";
+    import { token } from "/src/store";
     import { Response } from "$lib/helpers/Response";
 
     const authAction = new AuthAction()
@@ -20,7 +20,7 @@
             } else {
                 const storage = new BrowserStorage('localStorage')
                 storage.set("token", response.data.token)
-                Auth.token.set(response.data.token)
+                token.set(response.data.token)
                 Toast.success(response.message)
                 return Response.redirect('http://localhost:3000/')
             }
