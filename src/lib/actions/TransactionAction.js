@@ -11,4 +11,23 @@ export class TransactionAction {
       return e.data
     }
   }
+
+  async getTransaction(hash, chain) {
+    try {
+      const response = await request.get(`/transactions/${hash}?chain=${chain}`)
+      return response.data
+    } catch (e) {
+      return e.data
+    }
+  }
+
+  async sendTransaction(data, chain) {
+    console.log(data)
+    try {
+      const response = await request.post(`/transfer?chain=${chain}`, data)
+      return response.data
+    } catch (e) {
+      return e.data
+    }
+  }
 }

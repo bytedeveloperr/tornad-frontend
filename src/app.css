@@ -20,3 +20,6 @@ body {
 	background-color: #121326;
 }
 
+.form-check-input {
+	background-color: rgba(255, 255, 255, 0.05) !important;
+}

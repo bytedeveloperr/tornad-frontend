@@ -8,7 +8,10 @@
   import qrcode from "qrcode"
   import { wallet } from "/src/store";
   import { Clipboard } from "$lib/helpers/Clipboard"
-  
+  import { Request } from "$lib/helpers/Request";
+    
+  Request.ensureAuth()
+
   const walletAction = new WalletAction()
   const clipboard = new Clipboard()
 

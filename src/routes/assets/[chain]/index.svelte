@@ -8,6 +8,9 @@
   import { Util } from "$lib/helpers/Util";
   import { wallet } from "/src/store";
   import { onMount } from "svelte";
+  import { Request } from "$lib/helpers/Request";
+    
+  Request.ensureAuth()
 
   const walletAction = new WalletAction()
   const transactionAction = new TransactionAction()
@@ -105,7 +108,7 @@
         {:else}
         <div class="list-group text-truncate" style="border-radius:0;">
           {#each data.transactions.items as transaction}
-            <a href="#/" class="list-group-item mb-2 border border-{transaction.successful ? 'success' : 'danger'} border-3 border-end-0 border-top-0 border-bottom-0" style="background-color: rgba(255, 255, 255, 0.05);" aria-current="true">
+            <a href="/assets/{$page.params.chain}/tx/{transaction.tx_hash}" class="list-group-item mb-2 border border-{transaction.successful ? 'success' : 'danger'} border-3 border-end-0 border-top-0 border-bottom-0" style="background-color: rgba(255, 255, 255, 0.05);" aria-current="true">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{transaction.to_address === data.address ? "Received" : "Sent"}</h5>
                 <span class="fs-4 fw-bold">{Util.formatToDecimal(transaction.value, data.balance.contract_decimals)} <small class="fs-6">{data.balance?.contract_ticker_symbol}</small></span>

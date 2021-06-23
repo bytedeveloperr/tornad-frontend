@@ -7,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#/">Wallet</a>
+          <a class="nav-link" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#/">Spot Prices</a>
+          <a class="nav-link" href="/spot-prices">Spot Prices</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#/">Setings</a>

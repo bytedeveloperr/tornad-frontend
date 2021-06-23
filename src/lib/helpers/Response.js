@@ -1,4 +1,4 @@
-import { amp, browser, dev, prerendering } from "$app/env"
+import { browser } from "$app/env"
 
 export class Response {
   static redirect(url) {

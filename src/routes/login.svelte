@@ -4,7 +4,10 @@
     import { BrowserStorage } from "$lib/helpers/BrowserStorage"
     import { token } from "/src/store";
     import { Response } from "$lib/helpers/Response";
+    import { Request } from "$lib/helpers/Request";
 
+    Request.ensureGuest()
+    
     const authAction = new AuthAction()
 
     const data = {
@@ -22,7 +25,7 @@
                 storage.set("token", response.data.token)
                 token.set(response.data.token)
                 Toast.success(response.message)
-                return Response.redirect('http://localhost:3000/')
+                return Response.redirect(new URL(`${window.location.protocol}//${window.location.hostname}:${window.location.port}`).toString())
             }
         }
       }

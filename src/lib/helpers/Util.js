@@ -1,5 +1,5 @@
 export class Util {
-  static formatToDecimal(value, decimal) {
-    return (value / 10 ** decimal).toFixed(4)
+  static formatToDecimal(value, decimal = 18) {
+    return (value / 10 ** decimal).toFixed(8)
   }
 }

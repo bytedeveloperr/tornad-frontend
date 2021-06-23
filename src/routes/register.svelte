@@ -4,6 +4,9 @@
     import { BrowserStorage } from "$lib/helpers/BrowserStorage"
     import { token } from "/src/store";
     import { Response } from "$lib/helpers/Response";
+    import { Request } from "$lib/helpers/Request";
+
+    Request.ensureGuest()
 
     const authAction = new AuthAction()
 
@@ -22,7 +25,7 @@
                 storage.set("token", response.data.token)
                 token.set(response.data.token)
                 Toast.success(response.message)
-                return Response.redirect('http://localhost:3000/')
+                return Response.redirect(new URL(`${window.location.protocol}//${window.location.hostname}:${window.location.port}`).toString())
             }
         }
       }
@@ -39,7 +42,7 @@
 <div class="row">
     <div class="col-md-6 col-lg-4 mx-auto">
         <div class="p-3">
-            <h3 class="text-center fs-3 fw-light mb-3">Login to your account</h3>
+            <h3 class="text-center fs-3 fw-light mb-3">Create an account</h3>
             <div class="mb-3">
                 <label for="username" class="fw-bold form-label">Username</label>
                 <input type="text" class="form-control" id="username" bind:value={data.input.username} required />

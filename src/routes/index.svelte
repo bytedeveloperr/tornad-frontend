@@ -6,6 +6,9 @@
     import Loader from "$lib/components/Loader.svelte";
     import { wallet } from "/src/store";
     import { BrowserStorage } from "$lib/helpers/BrowserStorage";
+    import { Request } from "$lib/helpers/Request";
+    
+    Request.ensureAuth()
     
     const walletAction = new WalletAction()
     const storage = new BrowserStorage('localStorage')
@@ -23,9 +26,13 @@
                 if (response.error) {
                     Toast.error(response.message)
                 } else {
+                    const walletData = {
+                        address: response.data[0].address, 
+                        items: response.data
+                    }
                     data.balances.items = response.data || []
-                    wallet.set(data.balances.items)
-                    storage.set('wallet', JSON.stringify({ address: response.data[0].address, items: response.data }))
+                    wallet.set(walletData)
+                    storage.set('wallet', JSON.stringify(walletData))
                 }
                 data.balances.loading = false
             }
@@ -35,6 +42,7 @@
     
     onMount(async () => {
         if ($wallet.items?.length < 1) {
+            console.log("no")
             await data.methods.getWalletBalance()
         } else {
             data.balances.items = $wallet.items

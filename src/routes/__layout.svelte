@@ -6,7 +6,7 @@
 </script>
 
 {#if $page.path === "/login" || $page.path === "/register"}
-	<!--  -->
+	<!-- No Navbar here -->
 {:else}
 	<Topbar />
 {/if}
