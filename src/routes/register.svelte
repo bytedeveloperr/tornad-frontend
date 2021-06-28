@@ -11,15 +11,18 @@
     const authAction = new AuthAction()
 
     const data = {
+      submitted: false,
       input:{
         username: '',
         password: '',
       },
       methods:{
         async registerUser() {
+            data.submitted = true
             const response = await authAction.registerUser(data.input)
             if (response.error) {
                 Toast.error(response.message)
+                data.submitted = false
             } else {
                 const storage = new BrowserStorage('localStorage')
                 storage.set("token", response.data.token)
@@ -31,6 +34,10 @@
       }
     }
 </script>
+
+<svelte:head>
+	<title>Tornad | Register</title>
+</svelte:head>
 
 <br />
 <br />
@@ -54,7 +61,7 @@
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary" on:click={data.methods.registerUser}>Create account</button>
             </div>
-            <p class="mt-3 small">Already have an account? <a href="/login" class="text-decoration-none">Login</a></p>
+            <p class="mt-3" disabled={data.submitted}>Already have an account? <a href="/login" class="text-decoration-none">Login</a></p>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Request } from "$lib/helpers/Request"
+import { Response } from "$lib/helpers/Response"
 
 const request = new Request()
 
@@ -8,7 +9,10 @@ export class TransactionAction {
       const response = await request.get(`/transactions?chain=${chain}`)
       return response.data
     } catch (e) {
-      return e.data
+      if (e.response.status == 401) {
+        return Response.redirect("/logout")
+      }
+      returne.response.data
     }
   }
 
@@ -17,17 +21,22 @@ export class TransactionAction {
       const response = await request.get(`/transactions/${hash}?chain=${chain}`)
       return response.data
     } catch (e) {
-      return e.data
+      if (e.response.status == 401) {
+        return Response.redirect("/logout")
+      }
+      returne.response.data
     }
   }
 
   async sendTransaction(data, chain) {
-    console.log(data)
     try {
       const response = await request.post(`/transfer?chain=${chain}`, data)
       return response.data
     } catch (e) {
-      return e.data
+      if (e.response.status == 401) {
+        return Response.redirect("/logout")
+      }
+      returne.response.data
     }
   }
 }

@@ -9,7 +9,7 @@ export class AuthAction {
       const response = await request.post("/auth/login", data)
       return response.data
     } catch (e) {
-      return e.data
+      return e.response.data
     }
   }
 
@@ -18,7 +18,7 @@ export class AuthAction {
       const response = await request.post("/auth/register", data)
       return response.data
     } catch (e) {
-      return e.data
+      return e.response.data
     }
   }
 }

@@ -56,6 +56,10 @@ import { Util } from "$lib/helpers/Util";
   })  
 </script>
 
+<svelte:head>
+	<title>Tornad | Transaction {$page.params.hash}</title>
+</svelte:head>
+
 <div class="modal fade" id="txModal" data-bs-backdrop="static" data-bs-keyboard="true" aria-labelledby="txModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -81,7 +85,7 @@ import { Util } from "$lib/helpers/Util";
             <hr class="p-0">
             <li class="py-2">Tranasction Date: {data.tx.block_signed_at}</li>
             <hr class="p-0">
-            <li class="py-2">Status: {data.tx.successful}</li>
+            <li class="py-2">Status: {data.tx.successful ? "Successful" : "Failed"}</li>
           </ul>
         {/if}
       </div>

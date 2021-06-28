@@ -77,6 +77,10 @@
   
 </script>
 
+<svelte:head>
+	<title>Tornad | {$page.params.chain} Details</title>
+</svelte:head>
+
 <div class="modal fade" id="assetDetailsModal" data-bs-backdrop="static" data-bs-keyboard="true" aria-labelledby="assetDetailsModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -110,10 +114,10 @@
           {#each data.transactions.items as transaction}
             <a href="/assets/{$page.params.chain}/tx/{transaction.tx_hash}" class="list-group-item mb-2 border border-{transaction.successful ? 'success' : 'danger'} border-3 border-end-0 border-top-0 border-bottom-0" style="background-color: rgba(255, 255, 255, 0.05);" aria-current="true">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{transaction.to_address === data.address ? "Received" : "Sent"}</h5>
+                <h5 class="mb-1">{transaction.from_address === data.address ? "Sent" : "Received"}</h5>
                 <span class="fs-4 fw-bold">{Util.formatToDecimal(transaction.value, data.balance.contract_decimals)} <small class="fs-6">{data.balance?.contract_ticker_symbol}</small></span>
               </div>
-              <p class="mb-1 fw-light">{transaction.to_address === data.address ? `From: ${transaction.from_address}` : `To: ${transaction.to_address}`}</p>
+              <p class="mb-1 fw-light">{transaction.from_address === data.address ? `To: ${transaction.to_address}` : `From: ${transaction.from_address}`}</p>
             </a>
           {/each}
         </div>

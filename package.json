@@ -18,6 +18,7 @@
     "@zerodevx/svelte-toast": "^0.3.0",
     "axios": "^0.21.1",
     "cookie": "^0.4.1",
-    "qrcode": "^1.4.4"
+    "qrcode": "^1.4.4",
+    "svelte-chartjs": "^1.0.1"
   }
 }

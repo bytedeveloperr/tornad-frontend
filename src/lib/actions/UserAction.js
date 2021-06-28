@@ -3,10 +3,10 @@ import { Response } from "$lib/helpers/Response"
 
 const request = new Request()
 
-export class WalletAction {
-  async getWalletBalance() {
+export class UserAction {
+  async updateUser(data) {
     try {
-      const response = await request.get("/wallet/balances")
+      const response = await request.put(`/user`, data)
       return response.data
     } catch (e) {
       if (e.response.status == 401) {
@@ -16,9 +16,9 @@ export class WalletAction {
     }
   }
 
-  async getChainBalance(chain) {
+  async updatePassword(data) {
     try {
-      const response = await request.get(`/wallet/balances?chain=${chain}`)
+      const response = await request.put(`/user/password`, data)
       return response.data
     } catch (e) {
       if (e.response.status == 401) {
@@ -28,9 +28,9 @@ export class WalletAction {
     }
   }
 
-  async exportKeystore(password) {
+  async getUser() {
     try {
-      const response = await request.post(`/wallet/keystore`, { password })
+      const response = await request.get(`/user`)
       return response.data
     } catch (e) {
       if (e.response.status == 401) {

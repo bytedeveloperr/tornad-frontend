@@ -7,19 +7,22 @@
     import { Request } from "$lib/helpers/Request";
 
     Request.ensureGuest()
-    
+
     const authAction = new AuthAction()
 
     const data = {
+      submitted: false,
       input:{
         username: '',
         password: '',
       },
       methods:{
-        async loginUser (){
+        async loginUser(){
+            data.submitted = true
             const response = await authAction.loginUser(data.input)
             if (response.error) {
                 Toast.error(response.message)
+                data.submitted = false
             } else {
                 const storage = new BrowserStorage('localStorage')
                 storage.set("token", response.data.token)
@@ -31,6 +34,9 @@
       }
     }
 </script>
+<svelte:head>
+	<title>Tornad | Login</title>
+</svelte:head>
 
 <br />
 <br />
@@ -53,7 +59,7 @@
             <div class="d-grid">
                 <button type="submit" class="btn btn-primary" on:click={data.methods.loginUser}>Login</button>
             </div>
-            <p class="mt-3 small">Don't have an account? <a href="/register" class="text-decoration-none">Create account</a></p>
+            <p class="mt-3" disabled={data.submitted}>Don't have an account? <a href="/register" class="text-decoration-none">Create account</a></p>
         </div>
     </div>
 </div>
